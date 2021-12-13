@@ -15,10 +15,10 @@ function App() {
 
   return (
     <div className="App">
-      <Title />
-      <Overview />
-      <InsertForm movies={movies} setMovies={setMovies}/>
-      <MovieList movies={movies}/>
+      <Title className="Title" />
+      <Overview className="Overview" />
+      <InsertForm className="InsertForm" setMovies={setMovies} />
+      <MovieList className="MovieList" movies={movies} />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const InsertForm = ({movies, setMovies}) => {
+const InsertForm = ({setMovies}) => {
     const [newMovie, setNewMovie] = useState({title: "", year: 1900, franchise: "", genre: "", rating: 0, favourite: false})
     
     const handleOnChange = (property, value) => {
@@ -21,7 +21,8 @@ const InsertForm = ({movies, setMovies}) => {
                   return currentMovies;
                 }
             }
-            return {currentMovies, newMovie};   
+
+            return {...currentMovies, [newKey]: newMovie};   
         });
 
         setNewMovie({title: "", year: 1900, franchise: "", genre: "", rating: 0, favourite: false})

@@ -1,23 +1,11 @@
 const MovieList = ({movies}) => {
     return (
       <section id="MovieList">
-          <p>Movies</p>
-          {/* <ul>
-              {Object.entries(movies).map(movie => (
-                    <li key={movie[0]}>
-                        <ul>
-                            <li>{movie[1].title}</li>
-                            <li>{movie[1].year}</li>
-                            <li>{movie[1].franchise}</li>
-                            <li>{movie[1].genre}</li>
-                            <li>{movie[1].rating}</li>
-                        </ul>
-                    </li>
-              ))}
-          </ul> */}
-
+          <h2>Movies</h2>
+      
           {Object.entries(movies).map(movie => (
-          <table>
+          <table key={movie[0]}>
+              <tbody>
               <tr>
                   <th>Title</th>
                   <th>Year</th>
@@ -25,16 +13,19 @@ const MovieList = ({movies}) => {
                   <th>Genre</th>
                   <th>Rating</th>
               </tr>
+              <tr>
                   <td>{movie[1].title}</td>
                   <td>{movie[1].year}</td>
                   <td>{movie[1].franchise}</td>
                   <td>{movie[1].genre}</td>
                   <td>{movie[1].rating}</td>
+              </tr>
+              </tbody>
           </table>
           ))}
       </section>
     );
   };
-  
+   
   export default MovieList;
   
