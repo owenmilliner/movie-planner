@@ -18,7 +18,7 @@ function App() {
       <Title />
       <Overview />
       <InsertForm movies={movies} setMovies={setMovies}/>
-      <MovieList />
+      <MovieList movies={movies}/>
     </div>
   );
 }
