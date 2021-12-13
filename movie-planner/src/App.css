@@ -1,3 +1,53 @@
 .App {
   text-align: center;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  font-family: 'Josefin Slab', serif;
+  font-size: 20px;
+  height: 100%;
+}
+
+h1 {
+    margin:0;
+    padding: 10px;
+}
+
+header {
+    padding-bottom: 15px;
+}
+
+#movieForm {
+    width: 50%;
+    height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+.formSections {
+    margin: 0;
+    width: fit-content;
+    text-align: right;
+    display: inline;
+    float: left;
+    margin-right: 40px;
+}
+
+label {
+    display: block;
+    margin: 0;
+    margin-top: 15px;
+}
+
+input {
+    display: block;
+    margin: 0;
+    margin-top: 14px;
+}
+
+button {
+    margin-top: 14px;
+    display: block;
 }
