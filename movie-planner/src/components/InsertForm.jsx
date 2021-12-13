@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const InsertForm = ({setMovies}) => {
+const InsertForm = ({movies, setMovies}) => {
     const [newMovie, setNewMovie] = useState({title: "", year: 1900, franchise: "n/a", genre: "", rating: 0, favourite: false})
     
     const handleOnChange = (property, value) => {
@@ -10,6 +10,10 @@ const InsertForm = ({setMovies}) => {
 
         setNewMovie(movieObj);
     }
+
+    useEffect(() => {
+        localStorage.setItem("movies", JSON.stringify(movies));
+      }, [movies]);
 
     const addMovie = (event) => {
         event.preventDefault();
