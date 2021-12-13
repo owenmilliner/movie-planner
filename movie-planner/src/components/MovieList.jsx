@@ -1,6 +1,6 @@
 const MovieList = ({movies}) => {
     return (
-      <section id="MovieList">
+        <section id="MovieList">
           <h2>Movies</h2>
       
           {Object.entries(movies).map(movie => (
@@ -18,7 +18,7 @@ const MovieList = ({movies}) => {
                   <td>{movie[1].year}</td>
                   <td>{movie[1].franchise}</td>
                   <td>{movie[1].genre}</td>
-                  <td>{movie[1].rating}</td>
+                  <td><img src={`/images/${movie[1].rating}stars.png`} alt={`${movie[1].rating} star rating.`} width="107" height="20"/></td>
               </tr>
               </tbody>
           </table>

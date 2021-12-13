@@ -8,7 +8,7 @@ import Title from './components/Title';
 function App() {
     const [movies, setMovies] = useState({
         "the_martian_2015": 
-            {title: "The Martian", year: 2015, franchise: "", genre: "Sci-Fi", rating: 5, favourite: true}, 
+            {title: "The Martian", year: 2015, franchise: "n/a", genre: "Sci-Fi", rating: 5, favourite: true}, 
         "star_wars:_the_phantom_menace_(episode_i)_1999": 
             {title:"Star Wars: The Phantom Menace (Episode I)", year: 1999, franchise: "Star Wars", genre: "Sci-Fi", rating: 5, favourite: true}
         });

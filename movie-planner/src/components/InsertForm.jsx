@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const InsertForm = ({setMovies}) => {
-    const [newMovie, setNewMovie] = useState({title: "", year: 1900, franchise: "", genre: "", rating: 0, favourite: false})
+    const [newMovie, setNewMovie] = useState({title: "", year: 1900, franchise: "n/a", genre: "", rating: 0, favourite: false})
     
     const handleOnChange = (property, value) => {
         const movieObj = {...newMovie};
@@ -25,8 +25,7 @@ const InsertForm = ({setMovies}) => {
             return {...currentMovies, [newKey]: newMovie};   
         });
 
-        setNewMovie({title: "", year: 1900, franchise: "", genre: "", rating: 0, favourite: false})
-        console.log("Movie Submitted (but not actually, I need to add this still).");
+        setNewMovie({title: "", year: 1900, franchise: "n/a", genre: "", rating: 0, favourite: false})
     }
     
 
