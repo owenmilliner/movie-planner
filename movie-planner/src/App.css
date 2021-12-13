@@ -65,10 +65,24 @@ table {
 }
 
 td {
-    width: 120px;
+    width: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#movieTitle {
+    width: 160px;
+}
+
+#movieYear {
+    width: 60px;
+}
+
+tr {
 }
 
 th {
     text-decoration: underline 1px;
     padding-top: 5px;
+    border-bottom: 1px solid black;
 }
