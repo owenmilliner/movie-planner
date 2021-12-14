@@ -26,10 +26,24 @@ const MovieList = ({movies, setMovies}) => {
         const arrayConvert = Object.entries(movies);
         
         arrayConvert.sort((movieOne, movieTwo) => {
-            let  propA = (boolInAsc) ? movieOne[1][property] : movieTwo[1][property];
+            let propA = (boolInAsc) ? movieOne[1][property] : movieTwo[1][property];
             let propB = (!boolInAsc) ? movieOne[1][property] : movieTwo[1][property];
 
-            return propA < propB ? -1 : propA > propB ? 1 : 0;
+            if (propA < propB) {
+                return -1;
+            } else if (propA > propB) {
+                return 1;
+            } else {
+                if (property === "title") {
+                    return 0;
+                } else {
+                    propA = movieOne[1].title;
+                    propB = movieTwo[1].title;
+                    
+                    return propA < propB ? -1 : propA > propB ? 1 : 0;
+
+                }
+            }
         })
         const reconstructedObj = Object.fromEntries(arrayConvert);
 
