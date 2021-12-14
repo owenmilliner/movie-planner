@@ -19,7 +19,7 @@ header {
 }
 
 #InsertForm {
-    height: 250px;
+    height: 350px;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
@@ -49,6 +49,7 @@ input {
 
 button {
     margin-top: 14px;
+    margin-bottom: 10px;
     display: block;
 }
 
@@ -97,4 +98,32 @@ th {
     text-decoration: underline 1px;
     padding-top: 5px;
     border-bottom: 1px solid black;
+}
+
+#fileInput {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+#uploadLabel {
+    margin: 0;
+    padding: 5px;
+    width: fit-content;
+    border-radius: 3px;
+    border: 1px black solid;
+    background-color: rgb(239, 239, 239);
+}
+
+#fileUploadChild {
+    display: inline-block;
+    margin: 5px;
+    
+}
+
+#fileDesc {
+    margin-bottom: 0;
 }

@@ -31,6 +31,19 @@ const InsertForm = ({movies, setMovies}) => {
 
         setNewMovie({title: "", year: 1900, franchise: "n/a", genre: "", rating: 0, favourite: false})
     }
+
+    const testFunc = (event) => {
+        event.preventDefault();
+        alert(`The format of your JSON file should be: 
+{ movies:
+    { 'the_martian_2015:
+        { title: 'The Martian', year: 2015, franchise: 'n/a', genre: 'Sci-Fi', rating: 5, favourite: true},
+        
+      'avengers:_endgame':
+        { title: 'Avengers: Endgame', year: 2019, franchise: 'Marvel', genre: 'Superhero', rating: 5, favourite: true}
+    }
+}`);
+    }
     
 
     return (
@@ -55,7 +68,18 @@ const InsertForm = ({movies, setMovies}) => {
               <button type="submit" id="addMovie">Add</button>
               </div>
 
-          </form>
+              <p id="fileDesc">Alternatively, you can upload a JSON file containing the movie data you would like to import.</p>
+              <div id="fileUploadDiv">
+                <div id="fileUploadChild">
+                    <input type="file" id="fileInput" className="hidden" accept=".json"></input>
+                    <label htmlFor="fileInput" id="uploadLabel">Upload file</label>
+                </div>
+                <div id="fileUploadChild">
+                    <button id="formattingButton" onClick={testFunc}>?</button>
+                 </div>
+              </div>
+
+            </form>
           <br/>
       </section>
     );

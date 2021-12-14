@@ -58,6 +58,7 @@ const MovieList = ({movies, setMovies}) => {
     return (
         <section id="MovieList">
           <h2>Movies</h2>
+          <p>Number of movies rated: {Object.keys(movies).length}</p>
       
           <table>
               <tbody>
