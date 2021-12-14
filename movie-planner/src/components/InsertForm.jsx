@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 
 const InsertForm = ({movies, setMovies}) => {
     const [newMovie, setNewMovie] = useState({title: "", year: 1900, franchise: "n/a", genre: "", rating: 0, favourite: false})
-    
+    const [isVisible, setIsVisible] = useState(false);
+
     const handleOnChange = (property, value) => {
         const movieObj = {...newMovie};
 
@@ -33,18 +34,9 @@ const InsertForm = ({movies, setMovies}) => {
     }
 
     const testFunc = (event) => {
+        setIsVisible((val) => !val)
         event.preventDefault();
-        alert(`The format of your JSON file should be: 
-{ movies:
-    { 'the_martian_2015:
-        { title: 'The Martian', year: 2015, franchise: 'n/a', genre: 'Sci-Fi', rating: 5, favourite: true},
-        
-      'avengers:_endgame':
-        { title: 'Avengers: Endgame', year: 2019, franchise: 'Marvel', genre: 'Superhero', rating: 5, favourite: true}
     }
-}`);
-    }
-    
 
     return (
       <section id="InsertForm">
@@ -68,7 +60,7 @@ const InsertForm = ({movies, setMovies}) => {
               <button type="submit" id="addMovie">Add</button>
               </div>
 
-              <p id="fileDesc">Alternatively, you can upload a JSON file containing the movie data you would like to import.</p>
+              <p id="fileDesc">Alternatively, you can upload a .json file containing the movie data you would like to import.</p>
               <div id="fileUploadDiv">
                 <div id="fileUploadChild">
                     <input type="file" id="fileInput" className="hidden" accept=".json"></input>
@@ -78,6 +70,8 @@ const InsertForm = ({movies, setMovies}) => {
                     <button id="formattingButton" onClick={testFunc}>?</button>
                  </div>
               </div>
+                    {isVisible ? <div id="test"><p>Example json file format.</p><img id="formatImg" src="/images/jsonFormat.png" alt="formattingExample"/></div>
+ : <></>}
 
             </form>
           <br/>
