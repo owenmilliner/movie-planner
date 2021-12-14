@@ -75,7 +75,19 @@ td {
 }
 
 #movieYear {
+    width: 40px;
+}
+
+#movieGenre {
     width: 60px;
+}
+
+#movieDelete {
+    width: 20px;
+}
+
+.deleteButton {
+    margin: auto;
 }
 
 tr {

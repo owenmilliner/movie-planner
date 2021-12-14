@@ -18,7 +18,7 @@ function App() {
       <Title className="Title" />
       <Overview className="Overview" />
       <InsertForm className="InsertForm" movies={movies} setMovies={setMovies} />
-      <MovieList className="MovieList" movies={movies} />
+      <MovieList className="MovieList" movies={movies} setMovies={setMovies} />
     </div>
   );
 }
