@@ -5,6 +5,7 @@ const MovieList = ({movies, setMovies}) => {
     const [yearInAsc, setYearInAsc] = useState(true); 
     const [franchiseInAsc, setFranchiseInAsc] = useState(true); 
     const [genreInAsc, setGenreInAsc] = useState(true); 
+    const [ratingInAsc, setRatingInAsc] = useState(true); 
 
     const handleMovieDeletion = (event) => {
         if (window.confirm("Are you sure you want to delete this movie?")) {
@@ -102,6 +103,7 @@ const MovieList = ({movies, setMovies}) => {
         })
     }
 
+
     return (
         <section id="MovieList">
           <h2>Movies</h2>
@@ -113,7 +115,7 @@ const MovieList = ({movies, setMovies}) => {
                   <th onClick={yearSort}>Year</th>
                   <th onClick={franchiseSort}>Franchise</th>
                   <th onClick={genreSort}>Genre</th>
-                  <th>Rating</th>
+                  <th onClick={ratingSort}>Rating</th>
                   <th>Delete</th>
               </tr>
               </tbody>
