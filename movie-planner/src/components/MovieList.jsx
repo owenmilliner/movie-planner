@@ -10,7 +10,7 @@ const MovieList = ({movies, setMovies}) => {
     const handleMovieDeletion = (event) => {
         if (window.confirm("Are you sure you want to delete this movie?")) {
             event.preventDefault();
-            const toDeleteKey = Object.entries(event.nativeEvent.path[2])[0][1].return.key;
+            const toDeleteKey = Object.entries(event.nativeEvent.path[2])[0][1].return.key.replaceAll(' ', '_');
         
         setMovies((currentMovies) => {
             delete currentMovies[toDeleteKey];
@@ -18,7 +18,6 @@ const MovieList = ({movies, setMovies}) => {
             return {...currentMovies};   
         });
         } else {
-            console.log(window)
             event.target.checked = false;
         }
     }
