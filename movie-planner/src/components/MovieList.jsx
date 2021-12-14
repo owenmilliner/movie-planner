@@ -22,103 +22,22 @@ const MovieList = ({movies, setMovies}) => {
         }
     }
 
-    const titleSort = () => {
+    const sortBy = (property, boolInAsc, setBoolInAsc) => {
         const arrayConvert = Object.entries(movies);
-
+        
         arrayConvert.sort((movieOne, movieTwo) => {
-            let titleA = (titleInAsc) ? movieOne[0] : movieTwo[0];
-            let titleB = (!titleInAsc) ? movieOne[0] : movieTwo[0];
+            let  propA = (boolInAsc) ? movieOne[1][property] : movieTwo[1][property];
+            let propB = (!boolInAsc) ? movieOne[1][property] : movieTwo[1][property];
 
-            return titleA < titleB ? -1 : titleA > titleB ? 1 : 0;
+            return propA < propB ? -1 : propA > propB ? 1 : 0;
         })
-
         const reconstructedObj = Object.fromEntries(arrayConvert);
 
         setMovies(() => {
             return {...reconstructedObj};   
         }); 
-        setTitleInAsc(() => {
-            return titleInAsc ? false : true;
-        })
-    }
-
-    const yearSort = () => {
-        const arrayConvert = Object.entries(movies);
-
-        arrayConvert.sort((movieOne, movieTwo) => {
-            let yearA = (yearInAsc) ? movieOne[1].year : movieTwo[1].year;
-            let yearB = (!yearInAsc) ? movieOne[1].year : movieTwo[1].year;
-
-            return yearA < yearB ? -1 : yearA > yearB ? 1 : 0;
-        })
-
-        const reconstructedObj = Object.fromEntries(arrayConvert);
-
-        setMovies(() => {
-            return {...reconstructedObj};   
-        }); 
-        setYearInAsc(() => {
-            return yearInAsc ? false : true;
-        })
-    }
-
-    const franchiseSort = () => {
-        const arrayConvert = Object.entries(movies);
-
-        arrayConvert.sort((movieOne, movieTwo) => {
-            let franchiseA = (franchiseInAsc) ? movieOne[1].franchise : movieTwo[1].franchise;
-            let franchiseB = (!franchiseInAsc) ? movieOne[1].franchise : movieTwo[1].franchise;
-
-            return franchiseA < franchiseB ? -1 : franchiseA > franchiseB ? 1 : 0;
-        })
-
-        const reconstructedObj = Object.fromEntries(arrayConvert);
-
-        setMovies(() => {
-            return {...reconstructedObj};   
-        }); 
-        setFranchiseInAsc(() => {
-            return franchiseInAsc ? false : true;
-        })
-    }
-
-    const genreSort = () => {
-        const arrayConvert = Object.entries(movies);
-
-        arrayConvert.sort((movieOne, movieTwo) => {
-            let genreA = (genreInAsc) ? movieOne[1].genre : movieTwo[1].genre;
-            let genreB = (!genreInAsc) ? movieOne[1].genre : movieTwo[1].genre;
-
-            return genreA < genreB ? -1 : genreA > genreB ? 1 : 0;
-        })
-
-        const reconstructedObj = Object.fromEntries(arrayConvert);
-
-        setMovies(() => {
-            return {...reconstructedObj};   
-        }); 
-        setGenreInAsc(() => {
-            return genreInAsc ? false : true;
-        })
-    }
-
-    const ratingSort = () => {
-        const arrayConvert = Object.entries(movies);
-
-        arrayConvert.sort((movieOne, movieTwo) => {
-            let ratingA = (ratingInAsc) ? movieOne[1].rating : movieTwo[1].rating;
-            let ratingB = (!ratingInAsc) ? movieOne[1].rating : movieTwo[1].rating;
-
-            return ratingA < ratingB ? -1 : ratingA > ratingB ? 1 : 0;
-        })
-
-        const reconstructedObj = Object.fromEntries(arrayConvert);
-
-        setMovies(() => {
-            return {...reconstructedObj};   
-        }); 
-        setRatingInAsc(() => {
-            return ratingInAsc ? false : true;
+        setBoolInAsc(() => {
+            return boolInAsc ? false : true;
         })
     }
 
@@ -129,11 +48,11 @@ const MovieList = ({movies, setMovies}) => {
           <table>
               <tbody>
               <tr>
-                  <th onClick={titleSort}>Title</th>
-                  <th onClick={yearSort}>Year</th>
-                  <th onClick={franchiseSort}>Franchise</th>
-                  <th onClick={genreSort}>Genre</th>
-                  <th onClick={ratingSort}>Rating</th>
+                  <th onClick={() => {sortBy("title", titleInAsc, setTitleInAsc)}}>Title</th>
+                  <th onClick={() => {sortBy("year", yearInAsc, setYearInAsc)}}>Year</th>
+                  <th onClick={() => {sortBy("franchise", franchiseInAsc, setFranchiseInAsc)}}>Franchise</th>
+                  <th onClick={() => {sortBy("genre", genreInAsc, setGenreInAsc)}}>Genre</th>
+                  <th onClick={() => {sortBy("rating", ratingInAsc, setRatingInAsc)}}>Rating</th>
                   <th>Delete</th>
               </tr>
               </tbody>
