@@ -103,6 +103,25 @@ const MovieList = ({movies, setMovies}) => {
         })
     }
 
+    const ratingSort = () => {
+        const arrayConvert = Object.entries(movies);
+
+        arrayConvert.sort((movieOne, movieTwo) => {
+            let ratingA = (ratingInAsc) ? movieOne[1].rating : movieTwo[1].rating;
+            let ratingB = (!ratingInAsc) ? movieOne[1].rating : movieTwo[1].rating;
+
+            return ratingA < ratingB ? -1 : ratingA > ratingB ? 1 : 0;
+        })
+
+        const reconstructedObj = Object.fromEntries(arrayConvert);
+
+        setMovies(() => {
+            return {...reconstructedObj};   
+        }); 
+        setRatingInAsc(() => {
+            return ratingInAsc ? false : true;
+        })
+    }
 
     return (
         <section id="MovieList">
