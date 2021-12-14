@@ -20,7 +20,7 @@ const InsertForm = ({movies, setMovies}) => {
         event.preventDefault();
         
         setMovies((currentMovies) => {
-            const newKey = newMovie.title.toLowerCase().replace(' ', '_') + "_" + newMovie.year.toString();
+            const newKey = newMovie.title.toLowerCase().replaceAll(' ', '_') + "_" + newMovie.year.toString();
             for (const key in currentMovies) {
                 if (currentMovies[key] === newKey) {
                   return currentMovies;
@@ -33,9 +33,44 @@ const InsertForm = ({movies, setMovies}) => {
         setNewMovie({title: "", year: 1900, franchise: "n/a", genre: "", rating: 0, favourite: false})
     }
 
-    const testFunc = (event) => {
+    const changeVisibility = (event) => {
         setIsVisible((val) => !val)
         event.preventDefault();
+    }
+
+    const handleFileImport = (event) => {
+        event.preventDefault();
+
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+            let fileContents = evt.target.result;
+            try {
+                fileContents = JSON.parse(fileContents);
+            } catch (error) {
+                console.log(error);
+            }
+
+            for (const movie in fileContents.movies) {
+                const movieToAdd = fileContents.movies[movie];
+                
+                    setMovies((currentMovies) => {
+                        const newKey = movieToAdd.title.toLowerCase().replaceAll(' ', '_') + "_" + movieToAdd.year.toString();
+                        for (const key in currentMovies) {
+                            if (currentMovies[key] === newKey) {
+                              console.log("Movie already exists.");
+                              return currentMovies;
+                            }
+                        }
+            
+                        return {...currentMovies, [newKey]: movieToAdd};   
+                    });
+            
+                    setNewMovie({title: "", year: 1900, franchise: "n/a", genre: "", rating: 0, favourite: false})
+            }
+
+        };
+        reader.readAsText(event.target.files[0]);
+        
     }
 
     return (
@@ -63,11 +98,11 @@ const InsertForm = ({movies, setMovies}) => {
               <p id="fileDesc">Alternatively, you can upload a .json file containing the movie data you would like to import.</p>
               <div id="fileUploadDiv">
                 <div id="fileUploadChild">
-                    <input type="file" id="fileInput" className="hidden" accept=".json"></input>
+                    <input type="file" id="fileInput" className="hidden" accept=".json" onChange={handleFileImport}></input>
                     <label htmlFor="fileInput" id="uploadLabel">Upload file</label>
                 </div>
                 <div id="fileUploadChild">
-                    <button id="formattingButton" onClick={testFunc}>?</button>
+                    <button id="formattingButton" onClick={changeVisibility}>?</button>
                  </div>
               </div>
                     {isVisible ? <div id="test"><p>Example json file format.</p><img id="formatImg" src="/images/jsonFormat.png" alt="formattingExample"/></div>
