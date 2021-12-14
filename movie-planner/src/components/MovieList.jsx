@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const MovieList = ({movies, setMovies}) => {
     const [titleInAsc, setTitleInAsc] = useState(true);
+    const [yearInAsc, setYearInAsc] = useState(true); 
 
     const handleMovieDeletion = (event) => {
         if (window.confirm("Are you sure you want to delete this movie?")) {
@@ -23,15 +24,8 @@ const MovieList = ({movies, setMovies}) => {
         const arrayConvert = Object.entries(movies);
 
         arrayConvert.sort((movieOne, movieTwo) => {
-            let titleA = "";
-            let titleB = "";
-            if (titleInAsc) {
-                titleA = movieOne[0];
-                titleB = movieTwo[0];
-            } else {
-                titleB = movieOne[0];
-                titleA = movieTwo[0];
-            }
+            let titleA = (titleInAsc) ? movieOne[0] : movieTwo[0];
+            let titleB = (!titleInAsc) ? movieOne[0] : movieTwo[0];
 
             return titleA < titleB ? -1 : titleA > titleB ? 1 : 0;
         })
@@ -46,6 +40,25 @@ const MovieList = ({movies, setMovies}) => {
         })
     }
 
+    const yearSort = () => {
+        const arrayConvert = Object.entries(movies);
+
+        arrayConvert.sort((movieOne, movieTwo) => {
+            let yearA = (yearInAsc) ? movieOne[1].year : movieTwo[1].year;
+            let yearB = (!yearInAsc) ? movieOne[1].year : movieTwo[1].year;
+
+            return yearA < yearB ? -1 : yearA > yearB ? 1 : 0;
+        })
+
+        const reconstructedObj = Object.fromEntries(arrayConvert);
+
+        setMovies(() => {
+            return {...reconstructedObj};   
+        }); 
+        setYearInAsc(() => {
+            return yearInAsc ? false : true;
+        })
+    }
 
     return (
         <section id="MovieList">
@@ -55,7 +68,7 @@ const MovieList = ({movies, setMovies}) => {
               <tbody>
               <tr>
                   <th onClick={titleSort}>Title</th>
-                  <th>Year</th>
+                  <th onClick={yearSort}>Year</th>
                   <th>Franchise</th>
                   <th>Genre</th>
                   <th>Rating</th>
