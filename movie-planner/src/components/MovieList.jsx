@@ -3,6 +3,7 @@ import { useState } from "react";
 const MovieList = ({movies, setMovies}) => {
     const [titleInAsc, setTitleInAsc] = useState(true);
     const [yearInAsc, setYearInAsc] = useState(true); 
+    const [franchiseInAsc, setFranchiseInAsc] = useState(true); 
 
     const handleMovieDeletion = (event) => {
         if (window.confirm("Are you sure you want to delete this movie?")) {
@@ -60,6 +61,26 @@ const MovieList = ({movies, setMovies}) => {
         })
     }
 
+    const franchiseSort = () => {
+        const arrayConvert = Object.entries(movies);
+
+        arrayConvert.sort((movieOne, movieTwo) => {
+            let franchiseA = (franchiseInAsc) ? movieOne[1].franchise : movieTwo[1].franchise;
+            let franchiseB = (!franchiseInAsc) ? movieOne[1].franchise : movieTwo[1].franchise;
+
+            return franchiseA < franchiseB ? -1 : franchiseA > franchiseB ? 1 : 0;
+        })
+
+        const reconstructedObj = Object.fromEntries(arrayConvert);
+
+        setMovies(() => {
+            return {...reconstructedObj};   
+        }); 
+        setFranchiseInAsc(() => {
+            return franchiseInAsc ? false : true;
+        })
+    }
+
     return (
         <section id="MovieList">
           <h2>Movies</h2>
@@ -69,7 +90,7 @@ const MovieList = ({movies, setMovies}) => {
               <tr>
                   <th onClick={titleSort}>Title</th>
                   <th onClick={yearSort}>Year</th>
-                  <th>Franchise</th>
+                  <th onClick={franchiseSort}>Franchise</th>
                   <th>Genre</th>
                   <th>Rating</th>
                   <th>Delete</th>
