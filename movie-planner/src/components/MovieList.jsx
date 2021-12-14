@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 const MovieList = ({movies, setMovies}) => {
+    const [titleInAsc, setTitleInAsc] = useState(true);
+
     const handleMovieDeletion = (event) => {
         if (window.confirm("Are you sure you want to delete this movie?")) {
             event.preventDefault();
@@ -15,12 +19,19 @@ const MovieList = ({movies, setMovies}) => {
         }
     }
 
-    const titleSort = (event) => {
+    const titleSort = () => {
         const arrayConvert = Object.entries(movies);
 
         arrayConvert.sort((movieOne, movieTwo) => {
-            const titleA = movieOne[0];
-            const titleB = movieTwo[0];
+            let titleA = "";
+            let titleB = "";
+            if (titleInAsc) {
+                titleA = movieOne[0];
+                titleB = movieTwo[0];
+            } else {
+                titleB = movieOne[0];
+                titleA = movieTwo[0];
+            }
 
             return titleA < titleB ? -1 : titleA > titleB ? 1 : 0;
         })
@@ -30,6 +41,9 @@ const MovieList = ({movies, setMovies}) => {
         setMovies(() => {
             return {...reconstructedObj};   
         }); 
+        setTitleInAsc(() => {
+            return titleInAsc ? false : true;
+        })
     }
 
 
