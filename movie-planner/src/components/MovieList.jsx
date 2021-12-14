@@ -15,6 +15,23 @@ const MovieList = ({movies, setMovies}) => {
         }
     }
 
+    const titleSort = (event) => {
+        const arrayConvert = Object.entries(movies);
+
+        arrayConvert.sort((movieOne, movieTwo) => {
+            const titleA = movieOne[0];
+            const titleB = movieTwo[0];
+
+            return titleA < titleB ? -1 : titleA > titleB ? 1 : 0;
+        })
+
+        const reconstructedObj = Object.fromEntries(arrayConvert);
+
+        setMovies(() => {
+            return {...reconstructedObj};   
+        }); 
+    }
+
 
     return (
         <section id="MovieList">
@@ -23,7 +40,7 @@ const MovieList = ({movies, setMovies}) => {
           <table>
               <tbody>
               <tr>
-                  <th>Title</th>
+                  <th onClick={titleSort}>Title</th>
                   <th>Year</th>
                   <th>Franchise</th>
                   <th>Genre</th>
