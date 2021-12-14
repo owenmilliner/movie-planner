@@ -4,6 +4,7 @@ const MovieList = ({movies, setMovies}) => {
     const [titleInAsc, setTitleInAsc] = useState(true);
     const [yearInAsc, setYearInAsc] = useState(true); 
     const [franchiseInAsc, setFranchiseInAsc] = useState(true); 
+    const [genreInAsc, setGenreInAsc] = useState(true); 
 
     const handleMovieDeletion = (event) => {
         if (window.confirm("Are you sure you want to delete this movie?")) {
@@ -81,6 +82,26 @@ const MovieList = ({movies, setMovies}) => {
         })
     }
 
+    const genreSort = () => {
+        const arrayConvert = Object.entries(movies);
+
+        arrayConvert.sort((movieOne, movieTwo) => {
+            let genreA = (genreInAsc) ? movieOne[1].genre : movieTwo[1].genre;
+            let genreB = (!genreInAsc) ? movieOne[1].genre : movieTwo[1].genre;
+
+            return genreA < genreB ? -1 : genreA > genreB ? 1 : 0;
+        })
+
+        const reconstructedObj = Object.fromEntries(arrayConvert);
+
+        setMovies(() => {
+            return {...reconstructedObj};   
+        }); 
+        setGenreInAsc(() => {
+            return genreInAsc ? false : true;
+        })
+    }
+
     return (
         <section id="MovieList">
           <h2>Movies</h2>
@@ -91,7 +112,7 @@ const MovieList = ({movies, setMovies}) => {
                   <th onClick={titleSort}>Title</th>
                   <th onClick={yearSort}>Year</th>
                   <th onClick={franchiseSort}>Franchise</th>
-                  <th>Genre</th>
+                  <th onClick={genreSort}>Genre</th>
                   <th>Rating</th>
                   <th>Delete</th>
               </tr>
