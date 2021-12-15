@@ -16,6 +16,7 @@ h1 {
 
 header {
     padding-bottom: 15px;
+    padding-top: 15px;
 }
 
 #InsertForm {
@@ -132,6 +133,23 @@ th {
     background-color: #bb3e03;
     color:rgb(239, 239, 239);
     font-weight: bold;
+}
+
+#movieFunctionButtons {
+    width: fit-content;
     margin-left: auto;
     margin-right: auto;
+}
+
+#movieFunctionChild {
+    margin: 10px;
+    width: fit-content;
+    display: inline-block;
+}
+
+#movieFunctionChild button {
+    font-size: 0.7em;
+    margin: auto;
+    border-radius: 3px;
+    border: 1px solid black;
 }

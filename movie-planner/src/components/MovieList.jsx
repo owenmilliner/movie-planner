@@ -1,4 +1,5 @@
 import { useState } from "react";
+// const fs = require('browserify-fs');
 
 const MovieList = ({movies, setMovies}) => {
     const [titleInAsc, setTitleInAsc] = useState(true);
@@ -65,6 +66,23 @@ const MovieList = ({movies, setMovies}) => {
         }
     }
 
+    const handleMovieExport = (event) => {
+        event.preventDefault();
+        // console.log(movies);
+        // if (Object.keys(movies).length === 0) {
+        //     window.alert("Movie list is empty. You may only export a movie list which is populated.");
+        // } else {
+        //     console.log(process.cwd());
+        //     fs.writeFile('./src/movie-list.json', JSON.stringify(movies), (err) => {
+        //         if (err) {
+        //             console.log(err);
+        //         } else {
+        //             console.log("Movie list exported!");
+        //         }
+        //     } )
+        // }
+    }
+
     return (
         <section id="MovieList">
           <h2>Movies</h2>
@@ -94,7 +112,14 @@ const MovieList = ({movies, setMovies}) => {
               </tbody>
           ))}
           </table>
-          <button id="clearAllMovies" onClick={handleClearAll}>Clear All</button>
+          <section id="movieFunctionButtons">
+            <div id="movieFunctionChild">
+                <button id="exportMovieList" onClick={handleMovieExport}>Export Movies</button>
+            </div>
+            <div id="movieFunctionChild">
+                <button id="clearAllMovies" onClick={handleClearAll}>Clear All</button>
+            </div>
+          </section>
       </section>
     );
   };
