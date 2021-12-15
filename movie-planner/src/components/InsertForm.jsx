@@ -52,7 +52,14 @@ const InsertForm = ({movies, setMovies}) => {
 
             for (const movie in fileContents.movies) {
                 const movieToAdd = fileContents.movies[movie];
-                
+
+                if (movieToAdd.hasOwnProperty('title') &&
+                    movieToAdd.hasOwnProperty('year') &&
+                    movieToAdd.hasOwnProperty('franchise') &&
+                    movieToAdd.hasOwnProperty('genre') &&
+                    movieToAdd.hasOwnProperty('rating') && 
+                    movieToAdd.hasOwnProperty('favourite')
+                ) {
                     setMovies((currentMovies) => {
                         const newKey = movieToAdd.title.toLowerCase().replaceAll(' ', '_') + "_" + movieToAdd.year.toString();
                         for (const key in currentMovies) {
@@ -64,8 +71,11 @@ const InsertForm = ({movies, setMovies}) => {
             
                         return {...currentMovies, [newKey]: movieToAdd};   
                     });
-            
-                    setNewMovie({title: "", year: 1900, franchise: "n/a", genre: "", rating: 0, favourite: false})
+                } else {
+                    console.log("Error in input file. Missing property within: " + movie)
+                }
+                
+                setNewMovie({title: "", year: 1900, franchise: "n/a", genre: "", rating: 0, favourite: false})
             }
 
         };
