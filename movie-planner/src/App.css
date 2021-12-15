@@ -127,3 +127,11 @@ th {
 #fileDesc {
     margin-bottom: 0;
 }
+
+#clearAllMovies {
+    background-color: #bb3e03;
+    color:rgb(239, 239, 239);
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+}

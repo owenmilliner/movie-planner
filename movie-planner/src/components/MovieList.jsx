@@ -55,6 +55,16 @@ const MovieList = ({movies, setMovies}) => {
         })
     }
 
+    const handleClearAll = (event) => {
+        if (window.confirm("Are you sure you want to delete ALL movies?")) {
+            event.preventDefault();
+        
+            setMovies({});
+        } else {
+            event.target.checked = false;
+        }
+    }
+
     return (
         <section id="MovieList">
           <h2>Movies</h2>
@@ -84,6 +94,7 @@ const MovieList = ({movies, setMovies}) => {
               </tbody>
           ))}
           </table>
+          <button id="clearAllMovies" onClick={handleClearAll}>Clear All</button>
       </section>
     );
   };
